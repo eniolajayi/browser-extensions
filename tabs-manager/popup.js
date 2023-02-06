@@ -42,6 +42,5 @@ groupButton.addEventListener("click", async () => {
 
 
 ungroupButton.addEventListener("click", async () => {
-    const group = await chrome.tabs.ungroup(tabIds);
-    await chrome.tabGroups.update(group);
+    await chrome.tabs.ungroup(tabIds);
 });
