@@ -1,5 +1,20 @@
 body {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --item-bg-color-odd: #80808030;
+    --item-bg-color-even: #ffffff;
     width: 20rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --bg-color: #222222;
+        --item-bg-color-odd: #9b9b9b30;
+        --item-bg-color-even: #21212130;
+        --text-color: #d8d8d8;
+    }
 }
 
 ul {
@@ -13,11 +28,11 @@ li {
 }
 
 li:nth-child(odd) {
-    background: #80808030;
+    background: var(--item-bg-color-odd);
 }
 
 li:nth-child(even) {
-    background: #ffffff;
+    background: var(--item-bg-color-even);
 }
 
 h3,
