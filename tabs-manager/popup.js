@@ -5,6 +5,8 @@ const tabs = await chrome.tabs.query({
     ],
 });
 
+const tabIds = tabs.map(({ id }) => id);
+
 const collator = new Intl.Collator();
 // sort tab names alphabetically
 tabs.sort((a, b) => collator.compare(a.title, b.title));
@@ -29,10 +31,17 @@ for (const tab of tabs) {
 
 document.querySelector("ul").append(...elements);
 
-const button = document.querySelector("button");
-button.addEventListener("click", async () => {
-    const tabIds = tabs.map(({ id }) => id);
+
+const groupButton = document.querySelector(".btn.group");
+const ungroupButton = document.querySelector(".btn.ungroup");
+
+groupButton.addEventListener("click", async () => {
     const group = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(group, { title: "DOCS", color: "green" });
+});
 
+
+ungroupButton.addEventListener("click", async () => {
+    const group = await chrome.tabs.ungroup(tabIds);
+    await chrome.tabGroups.update(group);
 });
